@@ -11,7 +11,7 @@ image:
   tag: "26917350484"
 
 ingress:
-  enabled: false
+  enabled: true
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
