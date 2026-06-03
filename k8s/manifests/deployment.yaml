@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: gowebapp
-        image: lalit/gowebapp:v1
+        image: lalitkr2526/gowebapp:v1
         ports:
         - containerPort: 80
