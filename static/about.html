@@ -1,89 +1,333 @@
-<Docktype html>
-<html>
-    <head>
-        <title>About</title>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-            }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Lalit Kumar — DevOps Engineer passionate about cloud-native technologies, Kubernetes, and infrastructure automation.">
+    <title>About | Lalit Kumar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-            header {
-                background-color: #333;
-                color: #fff;
-                padding: 10px 0;
-                text-align: center;
-            }
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #0f1628;
+            --bg-card: rgba(255,255,255,0.04);
+            --accent-cyan: #00d4ff;
+            --accent-purple: #7c3aed;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --text-primary: #f0f4ff;
+            --text-secondary: #8892b0;
+            --text-muted: #4a5568;
+            --border: rgba(255,255,255,0.08);
+        }
 
-            nav ul {
-                list-style-type: none;
-                padding: 0;
-            }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-            nav ul li {
-                display: inline;
-                margin-right: 10px;
-            }
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 { width: 450px; height: 450px; background: rgba(124,58,237,0.12); top: -100px; left: -100px; }
+        .orb-2 { width: 350px; height: 350px; background: rgba(0,212,255,0.08); bottom: 10%; right: -50px; }
 
-            nav ul li a {
-                color: #fff;
-                text-decoration: none;
-            }
+        /* Nav */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(10,14,26,0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 500; color: var(--accent-cyan); }
+        .nav-logo span { color: var(--text-secondary); }
+        .nav-links { display: flex; gap: 0.5rem; list-style: none; }
+        .nav-links a { display: block; padding: 0.4rem 1rem; color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; border-radius: 6px; transition: all 0.2s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); background: var(--bg-card); }
+        .nav-links a.active { color: var(--accent-cyan); }
 
-            main {
-                padding: 20px;
-            }
+        /* Content */
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 8rem 3rem 5rem;
+        }
 
-            section {
-                margin-bottom: 20px;
-            }
+        .page-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.75rem; }
+        .page-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+        .page-sub { color: var(--text-secondary); font-size: 1rem; margin-bottom: 3.5rem; }
 
-            footer {
-                background-color: #333;
-                color: #fff;
-                text-align: center;
-                padding: 10px 0;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="home">Home</a></li>
-                    <li><a href="about">About</a></li>
-                    <li><a href="contact">Contact</a></li>
-                    <li><a href="courses">Courses</a></li>
-                </ul>
-            </nav>
-        </header>
+        /* Profile card */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
 
-        <main>
-            <section>
-                <h1>About the Author</h1>
-                <p>Hi Everyone, My name is Lalit Kumar and welcome to this project!</p>
+        .profile-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
 
-                    <p>I am a DevOps enthusiast passionate about cloud-native technologies, Kubernetes, and infrastructure automation.</p>
-                        <p>This project demonstrates an end-to-end GitOps deployment of a Go web application on Amazon EKS using ArgoCD, Helm, Docker, Kubernetes, NGINX Ingress Controller, and AWS Load Balancer.</p>
+        .avatar-wrap {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(124,58,237,0.15));
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
 
-                            <p>Tech Stack used in this project:</p>
-                                <p>  - Docker &amp; Docker Hub (Containerization)</p>
-                                    <p> - Amazon EKS (Managed Kubernetes)</p>
-                                        <p> - Helm (Kubernetes Package Manager)</p>
-                                            <p> - ArgoCD (GitOps Continuous Delivery)</p>
-                                                <p> - NGINX Ingress Controller</p>
-                                                    <p> - GitHub Actions (CI/CD Pipeline)</p>
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+        .info-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+        .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .info-icon { font-size: 1rem; width: 24px; text-align: center; }
+        .info-text { font-size: 0.82rem; color: var(--text-secondary); }
+        .info-text strong { color: var(--text-primary); display: block; font-size: 0.8rem; }
 
-                                                        <p>Feel free to explore the repository and reach out on GitHub.</p>
-                                                            <p><a href="https://github.com/lalitkr2526">GitHub Profile</a></p>
-            </section>
-        </main>
+        .social-links { display: flex; gap: 0.75rem; }
+        .social-btn {
+            flex: 1;
+            padding: 0.6rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .social-btn:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
 
-        <footer>
-            <p>&copy; Lalit Kumar</p>
-        </footer>
-    </body>
+        /* Right side */
+        .profile-right { display: flex; flex-direction: column; gap: 2rem; }
+
+        .about-block h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .about-block p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 0.75rem; }
+
+        /* Timeline */
+        .timeline { position: relative; padding-left: 1.5rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple)); }
+        .timeline-item { position: relative; margin-bottom: 2rem; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 5px;
+            width: 9px; height: 9px;
+            border-radius: 50%;
+            background: var(--accent-cyan);
+            border: 2px solid var(--bg-primary);
+        }
+        .timeline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+        .timeline-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .timeline-org { font-size: 0.82rem; color: var(--accent-purple); margin-bottom: 0.4rem; }
+        .timeline-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
+
+        /* Values grid */
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 3rem; }
+        .value-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .value-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.2); }
+        .value-emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+        .value-name { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .value-desc { font-size: 0.75rem; color: var(--text-secondary); }
+
+        /* Footer */
+        footer {
+            position: relative; z-index: 1;
+            border-top: 1px solid var(--border);
+            padding: 2rem 3rem;
+        }
+        .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .footer-copy { font-size: 0.82rem; color: var(--text-muted); }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { font-size: 0.82rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--accent-cyan); }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .page { padding: 7rem 1.5rem 3rem; }
+            .profile-grid { grid-template-columns: 1fr; }
+            .avatar-wrap { aspect-ratio: unset; height: 180px; font-size: 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <nav>
+        <div class="nav-logo">lalit<span>.kumar</span></div>
+        <ul class="nav-links">
+            <li><a href="home">Home</a></li>
+            <li><a href="about" class="active">About</a></li>
+            <li><a href="courses">Courses</a></li>
+            <li><a href="contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="page">
+        <div class="page-tag">// about me</div>
+        <h1 class="page-title">Lalit Kumar</h1>
+        <p class="page-sub">DevOps Engineer · Cloud-Native Architect · Community Educator</p>
+
+        <div class="profile-grid">
+            <!-- Left column -->
+            <div class="profile-left">
+                <div class="avatar-wrap">👨‍💻</div>
+                <div class="info-card">
+                    <div class="info-row">
+                        <span class="info-icon">📍</span>
+                        <div class="info-text"><strong>Location</strong>India</div>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-icon">🏢</span>
+                        <div class="info-text"><strong>Role</strong>Senior DevOps Engineer</div>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-icon">🎓</span>
+                        <div class="info-text"><strong>Focus</strong>Cloud-Native & GitOps</div>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-icon">✉️</span>
+                        <div class="info-text"><strong>Open To</strong>Collaborations & Talks</div>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/lalitkr2526" class="social-btn" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://hub.docker.com/u/lalitkr2526" class="social-btn" target="_blank" rel="noopener">DockerHub</a>
+                </div>
+            </div>
+
+            <!-- Right column -->
+            <div class="profile-right">
+                <div class="about-block">
+                    <h2>👋 Hey there!</h2>
+                    <p>I'm <strong>Lalit Kumar</strong> — a DevOps Engineer and cloud-native enthusiast with a passion for building
+                    resilient, scalable infrastructure and sharing that knowledge with the community.</p>
+                    <p>I've spent years working at the intersection of software engineering and operations —
+                    automating deployments, taming Kubernetes clusters, and designing GitOps workflows that let teams
+                    ship faster with full confidence.</p>
+                    <p>Beyond my day job, I create free educational content helping thousands of engineers around the world
+                    go from zero to hero in DevOps, AWS, Terraform, and more.</p>
+                </div>
+
+                <div class="about-block">
+                    <h2>🚀 Journey</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024 – Present</div>
+                            <div class="timeline-title">Senior DevOps Engineer</div>
+                            <div class="timeline-org">Cloud-Native Projects & Open Source</div>
+                            <div class="timeline-desc">Leading Kubernetes-first architectures, GitOps adoption, and multi-cloud strategies on AWS.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022 – 2024</div>
+                            <div class="timeline-title">DevOps Engineer</div>
+                            <div class="timeline-org">Production EKS & CI/CD Automation</div>
+                            <div class="timeline-desc">Built end-to-end GitHub Actions pipelines, Helm chart libraries, and ArgoCD GitOps setups for microservices teams.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2020 – 2022</div>
+                            <div class="timeline-title">Cloud Infrastructure Engineer</div>
+                            <div class="timeline-org">AWS & Container Adoption</div>
+                            <div class="timeline-desc">Migrated on-premise workloads to AWS, introduced Docker containerisation and foundational Kubernetes deployments.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2019 – Now</div>
+                            <div class="timeline-title">Content Creator & Educator</div>
+                            <div class="timeline-org">YouTube · GitHub · Community</div>
+                            <div class="timeline-desc">Publishing free DevOps, AWS, Terraform, Ansible, and GitOps courses reaching 10K+ learners globally.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Values -->
+        <div class="page-tag">// what i believe in</div>
+        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:0.5rem;">Core Values</h2>
+        <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:0;">The principles that guide every project I work on.</p>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-emoji">🤖</div>
+                <div class="value-name">Automate Everything</div>
+                <div class="value-desc">If you do it twice, automate it. Manual toil is the enemy of reliability.</div>
+            </div>
+            <div class="value-card">
+                <div class="value-emoji">🔐</div>
+                <div class="value-name">Security First</div>
+                <div class="value-desc">Shift-left on security. RBAC, least privilege, and secrets management by default.</div>
+            </div>
+            <div class="value-card">
+                <div class="value-emoji">📖</div>
+                <div class="value-name">Open Knowledge</div>
+                <div class="value-desc">The best engineers share what they know. Documentation is as important as code.</div>
+            </div>
+            <div class="value-card">
+                <div class="value-emoji">⚡</div>
+                <div class="value-name">Fast Feedback</div>
+                <div class="value-desc">Short CI loops, observability, and immediate alerts keep teams moving confidently.</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <span class="footer-copy">© 2024 Lalit Kumar · DevOps Engineer</span>
+            <div class="footer-links">
+                <a href="https://github.com/lalitkr2526" target="_blank" rel="noopener">GitHub</a>
+                <a href="courses">Courses</a>
+                <a href="contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
 </html>

@@ -1,68 +1,272 @@
-<Doctype html>
-<html>
-    <head>
-        <title>Contact</title>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-            }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Lalit Kumar — DevOps engineer, educator, and cloud-native enthusiast. Connect on GitHub or join the community.">
+    <title>Contact | Lalit Kumar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-            header {
-                background-color: #333;
-                color: #fff;
-                padding: 10px 0;
-                text-align: center;
-            }
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-card: rgba(255,255,255,0.04);
+            --accent-cyan: #00d4ff;
+            --accent-purple: #7c3aed;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --text-primary: #f0f4ff;
+            --text-secondary: #8892b0;
+            --text-muted: #4a5568;
+            --border: rgba(255,255,255,0.08);
+        }
 
-            nav ul {
-                list-style-type: none;
-                padding: 0;
-            }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none; z-index: 0;
+        }
+        .orb { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
+        .orb-1 { width: 500px; height: 500px; background: rgba(124,58,237,0.12); top: -150px; right: -100px; }
+        .orb-2 { width: 400px; height: 400px; background: rgba(0,212,255,0.08); bottom: 0; left: -50px; }
 
-            nav ul li {
-                display: inline;
-                margin-right: 10px;
-            }
+        /* Nav */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(10,14,26,0.7); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 500; color: var(--accent-cyan); }
+        .nav-logo span { color: var(--text-secondary); }
+        .nav-links { display: flex; gap: 0.5rem; list-style: none; }
+        .nav-links a { display: block; padding: 0.4rem 1rem; color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; border-radius: 6px; transition: all 0.2s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); background: var(--bg-card); }
+        .nav-links a.active { color: var(--accent-cyan); }
 
-            nav ul li a {
-                color: #fff;
-                text-decoration: none;
-            }
+        /* Page */
+        .page {
+            position: relative; z-index: 1;
+            max-width: 900px; margin: 0 auto;
+            padding: 8rem 3rem 5rem;
+            flex: 1;
+        }
+        .page-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.75rem; }
+        .page-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+        .page-sub { color: var(--text-secondary); font-size: 1rem; margin-bottom: 3.5rem; line-height: 1.7; }
 
-            main {
-                padding: 20px;
-            }
+        /* Contact grid */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 3rem; }
 
-            section {
-                margin-bottom: 20px;
-            }
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.75rem;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .contact-card.github::before  { background: linear-gradient(90deg, #6e40c9, #7c3aed); }
+        .contact-card.docker::before  { background: linear-gradient(90deg, var(--accent-cyan), #0ea5e9); }
+        .contact-card.youtube::before { background: linear-gradient(90deg, #ef4444, #dc2626); }
+        .contact-card.slack::before   { background: linear-gradient(90deg, var(--accent-green), #059669); }
 
-            footer {
-                background-color: #333;
-                color: #fff;
-                text-align: center;
-                padding: 10px 0;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="home">Home</a></li>
-                    <li><a href="about">About</a></li>
-                    <li><a href="contact">Contact</a></li>
-                    <li><a href="courses">Courses</a></li>
-                </ul>
-            </nav>
-        </header>
+        .contact-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+        .contact-card:hover::before { opacity: 1; }
 
-        <main>
-            <section>
-                <h1>Contact Us</h1>
-                <p>For any doubts while learning, Join our Members only exclusive slack channel</p>
-                <a href="https://github.com/lalitkr2526">GitHub Profile</a>
+        .contact-platform-icon { font-size: 2rem; }
+        .contact-platform-name { font-size: 1.1rem; font-weight: 700; }
+        .contact-platform-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+        .contact-platform-handle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 0.25rem;
+            width: fit-content;
+        }
+        .contact-card.github .contact-platform-handle  { background: rgba(124,58,237,0.15); color: #a78bfa; }
+        .contact-card.docker .contact-platform-handle  { background: rgba(0,212,255,0.1); color: var(--accent-cyan); }
+        .contact-card.youtube .contact-platform-handle { background: rgba(239,68,68,0.1); color: #f87171; }
+        .contact-card.slack .contact-platform-handle   { background: rgba(16,185,129,0.1); color: var(--accent-green); }
+
+        .contact-arrow { color: var(--text-muted); font-size: 0.9rem; transition: all 0.2s; margin-top: auto; }
+        .contact-card:hover .contact-arrow { color: var(--accent-cyan); transform: translateX(4px); }
+
+        /* FAQ / Info section */
+        .info-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .info-section h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 1.25rem; }
+        .faq-item { padding: 1rem 0; border-bottom: 1px solid var(--border); }
+        .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .faq-q { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .faq-a { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
+
+        /* Availability status */
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(16,185,129,0.06);
+            border: 1px solid rgba(16,185,129,0.2);
+            border-radius: 12px;
+            margin-bottom: 3rem;
+        }
+        .avail-dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            box-shadow: 0 0 12px rgba(16,185,129,0.5);
+            flex-shrink: 0;
+            animation: pulse 2s ease infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+        .avail-text { font-size: 0.9rem; }
+        .avail-text strong { color: var(--accent-green); }
+
+        /* Footer */
+        footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2rem 3rem; }
+        .footer-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .footer-copy { font-size: 0.82rem; color: var(--text-muted); }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { font-size: 0.82rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--accent-cyan); }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .page { padding: 7rem 1.5rem 3rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <nav>
+        <div class="nav-logo">lalit<span>.kumar</span></div>
+        <ul class="nav-links">
+            <li><a href="home">Home</a></li>
+            <li><a href="about">About</a></li>
+            <li><a href="courses">Courses</a></li>
+            <li><a href="contact" class="active">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="page">
+        <div class="page-tag">// get in touch</div>
+        <h1 class="page-title">Let's Connect</h1>
+        <p class="page-sub">
+            Have a question about a course, a DevOps challenge, or just want to say hi?
+            Reach out through any of the channels below — I'm always happy to chat.
+        </p>
+
+        <div class="availability">
+            <div class="avail-dot"></div>
+            <div class="avail-text">
+                <strong>Currently available</strong> for DevOps consulting, guest talks, collaborations, and community questions.
+            </div>
+        </div>
+
+        <div class="contact-grid">
+            <a href="https://github.com/lalitkr2526" class="contact-card github" target="_blank" rel="noopener" id="contact-github">
+                <div class="contact-platform-icon">🐙</div>
+                <div class="contact-platform-name">GitHub</div>
+                <div class="contact-platform-desc">Browse my open-source projects, DevOps tools, and this very repository's source code.</div>
+                <div class="contact-platform-handle">@lalitkr2526</div>
+                <span class="contact-arrow">View Profile →</span>
+            </a>
+            <a href="https://hub.docker.com/u/lalitkr2526" class="contact-card docker" target="_blank" rel="noopener" id="contact-docker">
+                <div class="contact-platform-icon">🐳</div>
+                <div class="contact-platform-name">Docker Hub</div>
+                <div class="contact-platform-desc">Find my published container images — ready-to-use, optimised, and free for the community.</div>
+                <div class="contact-platform-handle">lalitkr2526</div>
+                <span class="contact-arrow">View Images →</span>
+            </a>
+            <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvIKMhk8WhzN1pYoJ1YU8Csa" class="contact-card youtube" target="_blank" rel="noopener" id="contact-youtube">
+                <div class="contact-platform-icon">📺</div>
+                <div class="contact-platform-name">YouTube</div>
+                <div class="contact-platform-desc">Subscribe to my channel for free DevOps, AWS, Kubernetes, Terraform, and cloud-native courses.</div>
+                <div class="contact-platform-handle">DevOps Zero to Hero</div>
+                <span class="contact-arrow">Watch Free Courses →</span>
+            </a>
+            <div class="contact-card slack" id="contact-community">
+                <div class="contact-platform-icon">💬</div>
+                <div class="contact-platform-name">Community</div>
+                <div class="contact-platform-desc">Join a members-only community of DevOps learners. Get answers, share projects, and grow together.</div>
+                <div class="contact-platform-handle">Members Slack Channel</div>
+                <span class="contact-arrow" style="color:var(--accent-green)">Members Only ✦</span>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>📌 Frequently Asked</h2>
+            <div class="faq-item">
+                <div class="faq-q">Are all courses really free?</div>
+                <div class="faq-a">Yes! Every course on the <a href="courses" style="color:var(--accent-cyan)">Courses page</a> is 100% free on YouTube. No credit card, no sign-up — just watch and learn.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">I'm stuck on a Kubernetes issue — where should I ask?</div>
+                <div class="faq-a">The best place is the community Slack channel, where thousands of DevOps learners help each other. You can also open a GitHub issue on the relevant project repo.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Can I use your Docker images in production?</div>
+                <div class="faq-a">Yes, all images on Docker Hub are publicly available. Always review the Dockerfile source on GitHub and pin to a specific tag for production stability.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Do you take on freelance / consulting work?</div>
+                <div class="faq-a">I'm open to short-term DevOps consulting engagements. Reach out via GitHub and describe your project.</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <span class="footer-copy">© 2024 Lalit Kumar · DevOps Engineer & Educator</span>
+            <div class="footer-links">
+                <a href="https://github.com/lalitkr2526" target="_blank" rel="noopener">GitHub</a>
+                <a href="courses">Courses</a>
+                <a href="about">About</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

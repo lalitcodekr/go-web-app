@@ -1,92 +1,332 @@
-<DocType html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free DevOps, AWS, Kubernetes, Terraform, and cloud-native courses by Lalit Kumar — Zero to Hero learning paths.">
+    <title>Courses | Lalit Kumar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<html>
-    <head>
-        <title>Learn DevOps from Basics</title>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-            }
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-card: rgba(255,255,255,0.04);
+            --accent-cyan: #00d4ff;
+            --accent-purple: #7c3aed;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-pink: #ec4899;
+            --text-primary: #f0f4ff;
+            --text-secondary: #8892b0;
+            --text-muted: #4a5568;
+            --border: rgba(255,255,255,0.08);
+        }
 
-            header {
-                background-color: #333;
-                color: #fff;
-                padding: 10px 0;
-                text-align: center;
-            }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none; z-index: 0;
+        }
+        .orb { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
+        .orb-1 { width: 500px; height: 500px; background: rgba(124,58,237,0.1); top: -100px; right: -100px; }
+        .orb-2 { width: 400px; height: 400px; background: rgba(0,212,255,0.07); bottom: 0; left: -80px; }
 
-            nav ul {
-                list-style-type: none;
-                padding: 0;
-            }
+        /* Nav */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(10,14,26,0.7); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 500; color: var(--accent-cyan); }
+        .nav-logo span { color: var(--text-secondary); }
+        .nav-links { display: flex; gap: 0.5rem; list-style: none; }
+        .nav-links a { display: block; padding: 0.4rem 1rem; color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; border-radius: 6px; transition: all 0.2s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); background: var(--bg-card); }
+        .nav-links a.active { color: var(--accent-cyan); }
 
-            nav ul li {
-                display: inline;
-                margin-right: 10px;
-            }
+        /* Page */
+        .page { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 8rem 3rem 5rem; }
+        .page-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.75rem; }
+        .page-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+        .page-sub { color: var(--text-secondary); font-size: 1rem; margin-bottom: 3.5rem; line-height: 1.7; }
 
-            nav ul li a {
-                color: #fff;
-                text-decoration: none;
-            }
+        /* Free badge */
+        .free-banner {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            background: rgba(16,185,129,0.1);
+            border: 1px solid rgba(16,185,129,0.3);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 3rem;
+        }
 
-            main {
-                padding: 20px;
-            }
+        /* Course categories */
+        .course-section { margin-bottom: 3.5rem; }
+        .course-section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .course-section-icon { font-size: 1.3rem; }
+        .course-section-title { font-size: 1.15rem; font-weight: 700; }
+        .course-section-badge {
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+        }
+        .badge-main { background: rgba(0,212,255,0.1); color: var(--accent-cyan); border: 1px solid rgba(0,212,255,0.2); }
+        .badge-add  { background: rgba(124,58,237,0.1); color: #a78bfa; border: 1px solid rgba(124,58,237,0.2); }
+        .badge-pro  { background: rgba(245,158,11,0.1); color: var(--accent-orange); border: 1px solid rgba(245,158,11,0.2); }
 
-            section {
-                margin-bottom: 20px;
-            }
+        /* Course cards grid */
+        .courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
 
-            footer {
-                background-color: #333;
-                color: #fff;
-                text-align: center;
-                padding: 10px 0;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="home">Home</a></li>
-                    <li><a href="about">About</a></li>
-                    <li><a href="contact">Contact</a></li>
-                    <li><a href="courses">Courses</a></li>
-                </ul>
-            </nav>
-        </header>
+        .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .course-card.cyan::before   { background: linear-gradient(90deg, var(--accent-cyan), #7c3aed); }
+        .course-card.purple::before { background: linear-gradient(90deg, #7c3aed, var(--accent-pink)); }
+        .course-card.green::before  { background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan)); }
+        .course-card.orange::before { background: linear-gradient(90deg, var(--accent-orange), #ef4444); }
 
-        <main>
-            <section>
-                <h1>Learn DevOps from Basics</h1>
-                <p>DevOps is a set of practices that combines software development (Dev) and IT operations (Ops)</p>
-                <p>It aims to shorten the systems development life cycle and provide continuous delivery with high software quality. DevOps is complementary with Agile software development; several DevOps aspects came from Agile methodology</p>    
+        .course-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+        .course-card:hover::before { opacity: 1; }
 
-                <h2>Main Tutorials</h2>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvIKMhk8WhzN1pYoJ1YU8Csa">DevOps Zero to Hero</a></p>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvLNOxX0RfndiYSt1Le9azze">AWS Zero to Hero</a></p>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvIcxgCUyBHVOcWs0Krjx9xR">Azure Zero to Hero</a></p>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvI0O4PeKVV1-yJoX2AqIWuf">Terraform Zero to Hero</a></p>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvKwTyYNJCUwGPvql0TrsPgv">Python Zero to Hero</a></p>
+        .course-card-emoji { font-size: 1.75rem; }
+        .course-card-title { font-size: 1rem; font-weight: 700; line-height: 1.3; }
+        .course-card-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+        .course-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+        }
+        .course-card-meta { font-size: 0.72rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+        .course-arrow { color: var(--accent-cyan); font-size: 0.9rem; transition: transform 0.2s; }
+        .course-card:hover .course-arrow { transform: translateX(4px); }
 
-                <h2>Additional Tutorials</h2>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvKv4MFW35XRskZbQbrt6ep-">Networking Fundamentals</a></p>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvLxd5nmtmORCmhD5jkrNbuE">Ansible Zero to Hero</a></p>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvKu7OZpgj1-MzJFqZ8RBp6f">GitOps Zero to Hero</a></p>
+        /* Footer */
+        footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2rem 3rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .footer-copy { font-size: 0.82rem; color: var(--text-muted); }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { font-size: 0.82rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--accent-cyan); }
 
-                <h2>Troubleshooting Tutorials</h2>
-                <p><a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvIrFBI1farpLS_OSUBXJMLX">Troubleshooting Kubernetes</a></p>
-            </section>
-        </main>
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .page { padding: 7rem 1.5rem 3rem; }
+            .courses-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
 
-        <footer>
-            <p>&copy; Lalit Kumar</p>
-        </footer>
-    </body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <nav>
+        <div class="nav-logo">lalit<span>.kumar</span></div>
+        <ul class="nav-links">
+            <li><a href="home">Home</a></li>
+            <li><a href="about">About</a></li>
+            <li><a href="courses" class="active">Courses</a></li>
+            <li><a href="contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="page">
+        <div class="page-tag">// free learning resources</div>
+        <h1 class="page-title">Zero to Hero Courses</h1>
+        <p class="page-sub">
+            Comprehensive, free video courses to take you from complete beginner to production-ready DevOps engineer.
+            All courses are hosted on YouTube — no sign-up, no paywall. Just learn.
+        </p>
+        <div class="free-banner">
+            ✅ 100% Free · No Paywalls · Open for Everyone
+        </div>
+
+        <!-- Main Courses -->
+        <div class="course-section">
+            <div class="course-section-header">
+                <span class="course-section-icon">🚀</span>
+                <span class="course-section-title">Core Learning Paths</span>
+                <span class="course-section-badge badge-main">Main Series</span>
+            </div>
+            <div class="courses-grid">
+                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvIKMhk8WhzN1pYoJ1YU8Csa"
+                   class="course-card cyan" target="_blank" rel="noopener" id="course-devops">
+                    <div class="course-card-emoji">⚙️</div>
+                    <div class="course-card-title">DevOps Zero to Hero</div>
+                    <div class="course-card-desc">The complete DevOps roadmap — CI/CD, containers, Kubernetes, monitoring, and everything in between. Start here.</div>
+                    <div class="course-card-footer">
+                        <span class="course-card-meta">YouTube Playlist</span>
+                        <span class="course-arrow">→</span>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvLNOxX0RfndiYSt1Le9azze"
+                   class="course-card green" target="_blank" rel="noopener" id="course-aws">
+                    <div class="course-card-emoji">☁️</div>
+                    <div class="course-card-title">AWS Zero to Hero</div>
+                    <div class="course-card-desc">Master Amazon Web Services — EC2, EKS, S3, IAM, VPC, Load Balancers, CloudWatch, and real-world project deployments.</div>
+                    <div class="course-card-footer">
+                        <span class="course-card-meta">YouTube Playlist</span>
+                        <span class="course-arrow">→</span>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvIcxgCUyBHVOcWs0Krjx9xR"
+                   class="course-card purple" target="_blank" rel="noopener" id="course-azure">
+                    <div class="course-card-emoji">🔷</div>
+                    <div class="course-card-title">Azure Zero to Hero</div>
+                    <div class="course-card-desc">Navigate Microsoft Azure — AKS, App Services, DevOps pipelines, and enterprise cloud architecture patterns.</div>
+                    <div class="course-card-footer">
+                        <span class="course-card-meta">YouTube Playlist</span>
+                        <span class="course-arrow">→</span>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvI0O4PeKVV1-yJoX2AqIWuf"
+                   class="course-card orange" target="_blank" rel="noopener" id="course-terraform">
+                    <div class="course-card-emoji">🏗️</div>
+                    <div class="course-card-title">Terraform Zero to Hero</div>
+                    <div class="course-card-desc">Infrastructure as Code from scratch — state management, modules, workspaces, and multi-cloud provisioning.</div>
+                    <div class="course-card-footer">
+                        <span class="course-card-meta">YouTube Playlist</span>
+                        <span class="course-arrow">→</span>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvKwTyYNJCUwGPvql0TrsPgv"
+                   class="course-card cyan" target="_blank" rel="noopener" id="course-python">
+                    <div class="course-card-emoji">🐍</div>
+                    <div class="course-card-title">Python Zero to Hero</div>
+                    <div class="course-card-desc">Python for DevOps and automation — scripting, boto3, REST APIs, and writing your own infrastructure tools.</div>
+                    <div class="course-card-footer">
+                        <span class="course-card-meta">YouTube Playlist</span>
+                        <span class="course-arrow">→</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Additional Courses -->
+        <div class="course-section">
+            <div class="course-section-header">
+                <span class="course-section-icon">🔧</span>
+                <span class="course-section-title">Deep-Dive Specialisations</span>
+                <span class="course-section-badge badge-add">Additional</span>
+            </div>
+            <div class="courses-grid">
+                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvKv4MFW35XRskZbQbrt6ep-"
+                   class="course-card purple" target="_blank" rel="noopener" id="course-networking">
+                    <div class="course-card-emoji">🌐</div>
+                    <div class="course-card-title">Networking Fundamentals</div>
+                    <div class="course-card-desc">TCP/IP, DNS, VPCs, subnets, firewalls, and the networking knowledge every DevOps engineer needs.</div>
+                    <div class="course-card-footer">
+                        <span class="course-card-meta">YouTube Playlist</span>
+                        <span class="course-arrow">→</span>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvLxd5nmtmORCmhD5jkrNbuE"
+                   class="course-card orange" target="_blank" rel="noopener" id="course-ansible">
+                    <div class="course-card-emoji">📜</div>
+                    <div class="course-card-title">Ansible Zero to Hero</div>
+                    <div class="course-card-desc">Configuration management and automation with Ansible — playbooks, roles, inventory, and real-world use-cases.</div>
+                    <div class="course-card-footer">
+                        <span class="course-card-meta">YouTube Playlist</span>
+                        <span class="course-arrow">→</span>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvKu7OZpgj1-MzJFqZ8RBp6f"
+                   class="course-card green" target="_blank" rel="noopener" id="course-gitops">
+                    <div class="course-card-emoji">🔄</div>
+                    <div class="course-card-title">GitOps Zero to Hero</div>
+                    <div class="course-card-desc">ArgoCD, Flux, and GitOps principles — declarative deployments, drift detection, and automated reconciliation.</div>
+                    <div class="course-card-footer">
+                        <span class="course-card-meta">YouTube Playlist</span>
+                        <span class="course-arrow">→</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Troubleshooting -->
+        <div class="course-section">
+            <div class="course-section-header">
+                <span class="course-section-icon">🐞</span>
+                <span class="course-section-title">Production Troubleshooting</span>
+                <span class="course-section-badge badge-pro">Pro Skills</span>
+            </div>
+            <div class="courses-grid">
+                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvIrFBI1farpLS_OSUBXJMLX"
+                   class="course-card orange" target="_blank" rel="noopener" id="course-k8s-troubleshoot">
+                    <div class="course-card-emoji">🔍</div>
+                    <div class="course-card-title">Troubleshooting Kubernetes</div>
+                    <div class="course-card-desc">Real-world debugging — CrashLoopBackOff, OOMKilled, scheduling failures, networking issues, and production incident playbooks.</div>
+                    <div class="course-card-footer">
+                        <span class="course-card-meta">YouTube Playlist</span>
+                        <span class="course-arrow">→</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <span class="footer-copy">© 2024 Lalit Kumar · All courses are free on YouTube</span>
+            <div class="footer-links">
+                <a href="https://github.com/lalitkr2526" target="_blank" rel="noopener">GitHub</a>
+                <a href="about">About</a>
+                <a href="contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
 </html>
