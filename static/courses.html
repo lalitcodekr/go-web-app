@@ -3,330 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free DevOps, AWS, Kubernetes, Terraform, and cloud-native courses by Lalit Kumar — Zero to Hero learning paths.">
-    <title>Courses | Lalit Kumar</title>
+    <meta name="description" content="Skills & expertise of Lalit Kumar — DevOps, Kubernetes, AWS, CI/CD, and cloud-native tooling.">
+    <title>Skills | Lalit Kumar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --bg-primary: #0a0e1a;
-            --bg-card: rgba(255,255,255,0.04);
-            --accent-cyan: #00d4ff;
-            --accent-purple: #7c3aed;
-            --accent-green: #10b981;
-            --accent-orange: #f59e0b;
-            --accent-pink: #ec4899;
-            --text-primary: #f0f4ff;
-            --text-secondary: #8892b0;
-            --text-muted: #4a5568;
+            --bg: #0a0e1a;
+            --card: rgba(255,255,255,0.04);
+            --cyan: #00d4ff;
+            --purple: #7c3aed;
+            --green: #10b981;
+            --orange: #f59e0b;
+            --text: #f0f4ff;
+            --muted: #8892b0;
             --border: rgba(255,255,255,0.08);
         }
 
         html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.6; }
         body::before {
-            content: '';
-            position: fixed; inset: 0;
-            background-image:
-                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none; z-index: 0;
+            content: ''; position: fixed; inset: 0;
+            background-image: linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px; pointer-events: none; z-index: 0;
         }
-        .orb { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
-        .orb-1 { width: 500px; height: 500px; background: rgba(124,58,237,0.1); top: -100px; right: -100px; }
-        .orb-2 { width: 400px; height: 400px; background: rgba(0,212,255,0.07); bottom: 0; left: -80px; }
+        .orb { position: fixed; border-radius: 50%; filter: blur(110px); pointer-events: none; z-index: 0; }
+        .orb-1 { width: 460px; height: 460px; background: rgba(124,58,237,0.11); top: -120px; right: -80px; }
+        .orb-2 { width: 380px; height: 380px; background: rgba(0,212,255,0.07); bottom: 0; left: -70px; }
 
-        /* Nav */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             display: flex; align-items: center; justify-content: space-between;
             padding: 1rem 3rem;
-            background: rgba(10,14,26,0.7); backdrop-filter: blur(20px);
+            background: rgba(10,14,26,0.75); backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
         }
-        .nav-logo { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 500; color: var(--accent-cyan); }
-        .nav-logo span { color: var(--text-secondary); }
-        .nav-links { display: flex; gap: 0.5rem; list-style: none; }
-        .nav-links a { display: block; padding: 0.4rem 1rem; color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; border-radius: 6px; transition: all 0.2s ease; }
-        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); background: var(--bg-card); }
-        .nav-links a.active { color: var(--accent-cyan); }
+        .logo { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 500; color: var(--cyan); }
+        .logo span { color: var(--muted); }
+        .nav-links { display: flex; gap: 0.4rem; list-style: none; }
+        .nav-links a { display: block; padding: 0.4rem 0.9rem; color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; border-radius: 6px; transition: all 0.2s; }
+        .nav-links a:hover { color: var(--text); background: var(--card); }
+        .nav-links a.active { color: var(--cyan); }
 
-        /* Page */
-        .page { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 8rem 3rem 5rem; }
-        .page-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.75rem; }
-        .page-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
-        .page-sub { color: var(--text-secondary); font-size: 1rem; margin-bottom: 3.5rem; line-height: 1.7; }
+        .page { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 8rem 3rem 5rem; }
+        .sec-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.6rem; }
+        h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.4rem; }
+        .sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 3rem; line-height: 1.7; }
 
-        /* Free badge */
-        .free-banner {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1.25rem;
-            background: rgba(16,185,129,0.1);
-            border: 1px solid rgba(16,185,129,0.3);
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: var(--accent-green);
-            font-weight: 600;
-            margin-bottom: 3rem;
-        }
-
-        /* Course categories */
-        .course-section { margin-bottom: 3.5rem; }
-        .course-section-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.25rem;
-            padding-bottom: 1rem;
+        /* Category block */
+        .cat { margin-bottom: 3.5rem; }
+        .cat-header {
+            display: flex; align-items: center; gap: 0.75rem;
+            margin-bottom: 1.25rem; padding-bottom: 0.9rem;
             border-bottom: 1px solid var(--border);
         }
-        .course-section-icon { font-size: 1.3rem; }
-        .course-section-title { font-size: 1.15rem; font-weight: 700; }
-        .course-section-badge {
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 600;
+        .cat-title { font-size: 1.05rem; font-weight: 700; }
+        .cat-badge {
+            padding: 0.2rem 0.65rem; border-radius: 4px;
+            font-size: 0.68rem; font-family: 'JetBrains Mono', monospace; font-weight: 600;
         }
-        .badge-main { background: rgba(0,212,255,0.1); color: var(--accent-cyan); border: 1px solid rgba(0,212,255,0.2); }
-        .badge-add  { background: rgba(124,58,237,0.1); color: #a78bfa; border: 1px solid rgba(124,58,237,0.2); }
-        .badge-pro  { background: rgba(245,158,11,0.1); color: var(--accent-orange); border: 1px solid rgba(245,158,11,0.2); }
+        .b-blue   { background: rgba(0,212,255,0.1); color: var(--cyan); border: 1px solid rgba(0,212,255,0.2); }
+        .b-purple { background: rgba(124,58,237,0.1); color: #a78bfa; border: 1px solid rgba(124,58,237,0.2); }
+        .b-green  { background: rgba(16,185,129,0.1); color: var(--green); border: 1px solid rgba(16,185,129,0.2); }
+        .b-orange { background: rgba(245,158,11,0.1); color: var(--orange); border: 1px solid rgba(245,158,11,0.2); }
 
-        /* Course cards grid */
-        .courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1rem; }
 
-        .course-card {
-            background: var(--bg-card);
+        .sk-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.4rem;
+            display: flex; flex-direction: column; gap: 0.5rem;
+            transition: all 0.3s; position: relative; overflow: hidden;
+        }
+        .sk-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .sk-card.c::before  { background: linear-gradient(90deg, var(--cyan), #0ea5e9); }
+        .sk-card.p::before  { background: linear-gradient(90deg, var(--purple), #ec4899); }
+        .sk-card.g::before  { background: linear-gradient(90deg, var(--green), var(--cyan)); }
+        .sk-card.o::before  { background: linear-gradient(90deg, var(--orange), #ef4444); }
+        .sk-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.14); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+        .sk-card:hover::before { opacity: 1; }
+
+        .sk-head { display: flex; align-items: center; gap: 0.65rem; }
+        .sk-emoji { font-size: 1.3rem; }
+        .sk-name { font-size: 0.9rem; font-weight: 600; }
+        .sk-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+        .sk-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.25rem; }
+        .sk-tag {
+            padding: 0.18rem 0.55rem; border-radius: 4px;
+            font-size: 0.68rem; font-family: 'JetBrains Mono', monospace;
+            background: rgba(255,255,255,0.05); color: var(--muted);
             border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.5rem;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .course-card.cyan::before   { background: linear-gradient(90deg, var(--accent-cyan), #7c3aed); }
-        .course-card.purple::before { background: linear-gradient(90deg, #7c3aed, var(--accent-pink)); }
-        .course-card.green::before  { background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan)); }
-        .course-card.orange::before { background: linear-gradient(90deg, var(--accent-orange), #ef4444); }
 
-        .course-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
-        .course-card:hover::before { opacity: 1; }
+        /* Proficiency bar section */
+        .bars { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+        .bar-item { }
+        .bar-label { display: flex; justify-content: space-between; font-size: 0.78rem; margin-bottom: 0.35rem; }
+        .bar-label span:first-child { color: var(--text); font-weight: 500; }
+        .bar-label span:last-child { font-family: 'JetBrains Mono', monospace; color: var(--muted); }
+        .bar-track { height: 5px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--cyan), var(--purple)); }
 
-        .course-card-emoji { font-size: 1.75rem; }
-        .course-card-title { font-size: 1rem; font-weight: 700; line-height: 1.3; }
-        .course-card-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; flex: 1; }
-        .course-card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--border);
-            margin-top: auto;
-        }
-        .course-card-meta { font-size: 0.72rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
-        .course-arrow { color: var(--accent-cyan); font-size: 0.9rem; transition: transform 0.2s; }
-        .course-card:hover .course-arrow { transform: translateX(4px); }
-
-        /* Footer */
-        footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2rem 3rem; }
-        .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-        .footer-copy { font-size: 0.82rem; color: var(--text-muted); }
-        .footer-links { display: flex; gap: 1.5rem; }
-        .footer-links a { font-size: 0.82rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--accent-cyan); }
+        footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 1.75rem 3rem; text-align: center; }
+        .footer-copy { font-size: 0.8rem; color: var(--muted); }
 
         @media (max-width: 768px) {
-            nav { padding: 1rem 1.5rem; }
-            .page { padding: 7rem 1.5rem 3rem; }
-            .courses-grid { grid-template-columns: 1fr; }
+            nav { padding: 1rem 1.25rem; }
+            .page { padding: 7rem 1.25rem 3rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .bars { grid-template-columns: 1fr; }
+            footer { padding: 1.5rem 1.25rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
 
-    <nav>
-        <div class="nav-logo">lalit<span>.kumar</span></div>
-        <ul class="nav-links">
-            <li><a href="home">Home</a></li>
-            <li><a href="about">About</a></li>
-            <li><a href="courses" class="active">Courses</a></li>
-            <li><a href="contact">Contact</a></li>
-        </ul>
-    </nav>
+<nav>
+    <div class="logo">lalit<span>.kumar</span></div>
+    <ul class="nav-links">
+        <li><a href="home">Home</a></li>
+        <li><a href="about">About</a></li>
+        <li><a href="courses" class="active">Skills</a></li>
+        <li><a href="contact">Contact</a></li>
+    </ul>
+</nav>
 
-    <main class="page">
-        <div class="page-tag">// free learning resources</div>
-        <h1 class="page-title">Zero to Hero Courses</h1>
-        <p class="page-sub">
-            Comprehensive, free video courses to take you from complete beginner to production-ready DevOps engineer.
-            All courses are hosted on YouTube — no sign-up, no paywall. Just learn.
-        </p>
-        <div class="free-banner">
-            ✅ 100% Free · No Paywalls · Open for Everyone
+<main class="page">
+    <div class="sec-tag">// technical skills</div>
+    <h1>Skills &amp; Expertise</h1>
+    <p class="sub">A breakdown of the tools, platforms, and practices I work with every day to build and run production systems.</p>
+
+    <!-- Orchestration & Cloud -->
+    <div class="cat">
+        <div class="cat-header">
+            <span style="font-size:1.2rem">☸️</span>
+            <span class="cat-title">Orchestration &amp; Cloud</span>
+            <span class="cat-badge b-blue">Core</span>
         </div>
-
-        <!-- Main Courses -->
-        <div class="course-section">
-            <div class="course-section-header">
-                <span class="course-section-icon">🚀</span>
-                <span class="course-section-title">Core Learning Paths</span>
-                <span class="course-section-badge badge-main">Main Series</span>
+        <div class="skills-grid">
+            <div class="sk-card c">
+                <div class="sk-head"><span class="sk-emoji">☸️</span><span class="sk-name">Kubernetes &amp; EKS</span></div>
+                <div class="sk-desc">Production cluster operations, workload scheduling, RBAC, HPA/VPA, node management, and multi-tenant namespacing.</div>
+                <div class="sk-tags"><span class="sk-tag">kubectl</span><span class="sk-tag">eksctl</span><span class="sk-tag">RBAC</span><span class="sk-tag">HPA</span></div>
             </div>
-            <div class="courses-grid">
-                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvIKMhk8WhzN1pYoJ1YU8Csa"
-                   class="course-card cyan" target="_blank" rel="noopener" id="course-devops">
-                    <div class="course-card-emoji">⚙️</div>
-                    <div class="course-card-title">DevOps Zero to Hero</div>
-                    <div class="course-card-desc">The complete DevOps roadmap — CI/CD, containers, Kubernetes, monitoring, and everything in between. Start here.</div>
-                    <div class="course-card-footer">
-                        <span class="course-card-meta">YouTube Playlist</span>
-                        <span class="course-arrow">→</span>
-                    </div>
-                </a>
-                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvLNOxX0RfndiYSt1Le9azze"
-                   class="course-card green" target="_blank" rel="noopener" id="course-aws">
-                    <div class="course-card-emoji">☁️</div>
-                    <div class="course-card-title">AWS Zero to Hero</div>
-                    <div class="course-card-desc">Master Amazon Web Services — EC2, EKS, S3, IAM, VPC, Load Balancers, CloudWatch, and real-world project deployments.</div>
-                    <div class="course-card-footer">
-                        <span class="course-card-meta">YouTube Playlist</span>
-                        <span class="course-arrow">→</span>
-                    </div>
-                </a>
-                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvIcxgCUyBHVOcWs0Krjx9xR"
-                   class="course-card purple" target="_blank" rel="noopener" id="course-azure">
-                    <div class="course-card-emoji">🔷</div>
-                    <div class="course-card-title">Azure Zero to Hero</div>
-                    <div class="course-card-desc">Navigate Microsoft Azure — AKS, App Services, DevOps pipelines, and enterprise cloud architecture patterns.</div>
-                    <div class="course-card-footer">
-                        <span class="course-card-meta">YouTube Playlist</span>
-                        <span class="course-arrow">→</span>
-                    </div>
-                </a>
-                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvI0O4PeKVV1-yJoX2AqIWuf"
-                   class="course-card orange" target="_blank" rel="noopener" id="course-terraform">
-                    <div class="course-card-emoji">🏗️</div>
-                    <div class="course-card-title">Terraform Zero to Hero</div>
-                    <div class="course-card-desc">Infrastructure as Code from scratch — state management, modules, workspaces, and multi-cloud provisioning.</div>
-                    <div class="course-card-footer">
-                        <span class="course-card-meta">YouTube Playlist</span>
-                        <span class="course-arrow">→</span>
-                    </div>
-                </a>
-                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvKwTyYNJCUwGPvql0TrsPgv"
-                   class="course-card cyan" target="_blank" rel="noopener" id="course-python">
-                    <div class="course-card-emoji">🐍</div>
-                    <div class="course-card-title">Python Zero to Hero</div>
-                    <div class="course-card-desc">Python for DevOps and automation — scripting, boto3, REST APIs, and writing your own infrastructure tools.</div>
-                    <div class="course-card-footer">
-                        <span class="course-card-meta">YouTube Playlist</span>
-                        <span class="course-arrow">→</span>
-                    </div>
-                </a>
+            <div class="sk-card c">
+                <div class="sk-head"><span class="sk-emoji">☁️</span><span class="sk-name">Amazon Web Services</span></div>
+                <div class="sk-desc">EKS, EC2, ELB, IAM, VPC, S3, CloudWatch — designing secure and cost-efficient cloud architectures.</div>
+                <div class="sk-tags"><span class="sk-tag">EKS</span><span class="sk-tag">IAM</span><span class="sk-tag">VPC</span><span class="sk-tag">CloudWatch</span></div>
+            </div>
+            <div class="sk-card c">
+                <div class="sk-head"><span class="sk-emoji">🔷</span><span class="sk-name">Microsoft Azure</span></div>
+                <div class="sk-desc">AKS, Azure DevOps pipelines, App Services, and enterprise cloud deployments on the Azure platform.</div>
+                <div class="sk-tags"><span class="sk-tag">AKS</span><span class="sk-tag">Azure DevOps</span><span class="sk-tag">App Service</span></div>
             </div>
         </div>
+    </div>
 
-        <!-- Additional Courses -->
-        <div class="course-section">
-            <div class="course-section-header">
-                <span class="course-section-icon">🔧</span>
-                <span class="course-section-title">Deep-Dive Specialisations</span>
-                <span class="course-section-badge badge-add">Additional</span>
+    <!-- CI/CD & GitOps -->
+    <div class="cat">
+        <div class="cat-header">
+            <span style="font-size:1.2rem">🔄</span>
+            <span class="cat-title">CI/CD &amp; GitOps</span>
+            <span class="cat-badge b-purple">Automation</span>
+        </div>
+        <div class="skills-grid">
+            <div class="sk-card p">
+                <div class="sk-head"><span class="sk-emoji">⚙️</span><span class="sk-name">GitHub Actions</span></div>
+                <div class="sk-desc">Fully automated pipelines: lint, test, build, Docker push, and Helm tag updates triggered on every commit.</div>
+                <div class="sk-tags"><span class="sk-tag">Workflows</span><span class="sk-tag">Secrets</span><span class="sk-tag">Matrix builds</span></div>
             </div>
-            <div class="courses-grid">
-                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvKv4MFW35XRskZbQbrt6ep-"
-                   class="course-card purple" target="_blank" rel="noopener" id="course-networking">
-                    <div class="course-card-emoji">🌐</div>
-                    <div class="course-card-title">Networking Fundamentals</div>
-                    <div class="course-card-desc">TCP/IP, DNS, VPCs, subnets, firewalls, and the networking knowledge every DevOps engineer needs.</div>
-                    <div class="course-card-footer">
-                        <span class="course-card-meta">YouTube Playlist</span>
-                        <span class="course-arrow">→</span>
-                    </div>
-                </a>
-                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvLxd5nmtmORCmhD5jkrNbuE"
-                   class="course-card orange" target="_blank" rel="noopener" id="course-ansible">
-                    <div class="course-card-emoji">📜</div>
-                    <div class="course-card-title">Ansible Zero to Hero</div>
-                    <div class="course-card-desc">Configuration management and automation with Ansible — playbooks, roles, inventory, and real-world use-cases.</div>
-                    <div class="course-card-footer">
-                        <span class="course-card-meta">YouTube Playlist</span>
-                        <span class="course-arrow">→</span>
-                    </div>
-                </a>
-                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvKu7OZpgj1-MzJFqZ8RBp6f"
-                   class="course-card green" target="_blank" rel="noopener" id="course-gitops">
-                    <div class="course-card-emoji">🔄</div>
-                    <div class="course-card-title">GitOps Zero to Hero</div>
-                    <div class="course-card-desc">ArgoCD, Flux, and GitOps principles — declarative deployments, drift detection, and automated reconciliation.</div>
-                    <div class="course-card-footer">
-                        <span class="course-card-meta">YouTube Playlist</span>
-                        <span class="course-arrow">→</span>
-                    </div>
-                </a>
+            <div class="sk-card p">
+                <div class="sk-head"><span class="sk-emoji">🔄</span><span class="sk-name">ArgoCD &amp; GitOps</span></div>
+                <div class="sk-desc">Declarative continuous delivery — Git as the single source of truth, drift detection, and automated rollbacks.</div>
+                <div class="sk-tags"><span class="sk-tag">ArgoCD</span><span class="sk-tag">Flux</span><span class="sk-tag">Drift detection</span></div>
+            </div>
+            <div class="sk-card p">
+                <div class="sk-head"><span class="sk-emoji">🐳</span><span class="sk-name">Docker</span></div>
+                <div class="sk-desc">Multi-stage distroless builds, optimised image layers, Docker Hub registries, and secure base images.</div>
+                <div class="sk-tags"><span class="sk-tag">Dockerfile</span><span class="sk-tag">Docker Hub</span><span class="sk-tag">Distroless</span></div>
             </div>
         </div>
+    </div>
 
-        <!-- Troubleshooting -->
-        <div class="course-section">
-            <div class="course-section-header">
-                <span class="course-section-icon">🐞</span>
-                <span class="course-section-title">Production Troubleshooting</span>
-                <span class="course-section-badge badge-pro">Pro Skills</span>
+    <!-- IaC & Config -->
+    <div class="cat">
+        <div class="cat-header">
+            <span style="font-size:1.2rem">🏗️</span>
+            <span class="cat-title">Infrastructure as Code</span>
+            <span class="cat-badge b-green">IaC</span>
+        </div>
+        <div class="skills-grid">
+            <div class="sk-card g">
+                <div class="sk-head"><span class="sk-emoji">📦</span><span class="sk-name">Helm</span></div>
+                <div class="sk-desc">Parameterised Kubernetes packaging — chart authoring, versioning, and lifecycle management across environments.</div>
+                <div class="sk-tags"><span class="sk-tag">Charts</span><span class="sk-tag">values.yaml</span><span class="sk-tag">Releases</span></div>
             </div>
-            <div class="courses-grid">
-                <a href="https://www.youtube.com/playlist?list=PLdpzxOOAlwvIrFBI1farpLS_OSUBXJMLX"
-                   class="course-card orange" target="_blank" rel="noopener" id="course-k8s-troubleshoot">
-                    <div class="course-card-emoji">🔍</div>
-                    <div class="course-card-title">Troubleshooting Kubernetes</div>
-                    <div class="course-card-desc">Real-world debugging — CrashLoopBackOff, OOMKilled, scheduling failures, networking issues, and production incident playbooks.</div>
-                    <div class="course-card-footer">
-                        <span class="course-card-meta">YouTube Playlist</span>
-                        <span class="course-arrow">→</span>
-                    </div>
-                </a>
+            <div class="sk-card g">
+                <div class="sk-head"><span class="sk-emoji">🏗️</span><span class="sk-name">Terraform</span></div>
+                <div class="sk-desc">Infrastructure provisioning with modules, state management, workspaces, and multi-cloud resource definitions.</div>
+                <div class="sk-tags"><span class="sk-tag">Modules</span><span class="sk-tag">State</span><span class="sk-tag">Workspaces</span></div>
+            </div>
+            <div class="sk-card g">
+                <div class="sk-head"><span class="sk-emoji">📜</span><span class="sk-name">Ansible</span></div>
+                <div class="sk-desc">Configuration management, server provisioning, and application deployment using playbooks and roles.</div>
+                <div class="sk-tags"><span class="sk-tag">Playbooks</span><span class="sk-tag">Roles</span><span class="sk-tag">Inventory</span></div>
             </div>
         </div>
-    </main>
+    </div>
 
-    <footer>
-        <div class="footer-inner">
-            <span class="footer-copy">© 2024 Lalit Kumar · All courses are free on YouTube</span>
-            <div class="footer-links">
-                <a href="https://github.com/lalitkr2526" target="_blank" rel="noopener">GitHub</a>
-                <a href="about">About</a>
-                <a href="contact">Contact</a>
+    <!-- Languages & Observability -->
+    <div class="cat">
+        <div class="cat-header">
+            <span style="font-size:1.2rem">🛠️</span>
+            <span class="cat-title">Languages &amp; Observability</span>
+            <span class="cat-badge b-orange">Tooling</span>
+        </div>
+        <div class="skills-grid">
+            <div class="sk-card o">
+                <div class="sk-head"><span class="sk-emoji">🐹</span><span class="sk-name">Go (Golang)</span></div>
+                <div class="sk-desc">Building lightweight web servers, CLI tools, and automation utilities — as used in this very application.</div>
+                <div class="sk-tags"><span class="sk-tag">net/http</span><span class="sk-tag">goroutines</span><span class="sk-tag">modules</span></div>
+            </div>
+            <div class="sk-card o">
+                <div class="sk-head"><span class="sk-emoji">🐍</span><span class="sk-name">Python &amp; Bash</span></div>
+                <div class="sk-desc">Scripting, automation, boto3 for AWS interactions, REST API integrations, and pipeline tooling.</div>
+                <div class="sk-tags"><span class="sk-tag">boto3</span><span class="sk-tag">Shell scripts</span><span class="sk-tag">APIs</span></div>
+            </div>
+            <div class="sk-card o">
+                <div class="sk-head"><span class="sk-emoji">📊</span><span class="sk-name">Monitoring &amp; Observability</span></div>
+                <div class="sk-desc">Setting up Prometheus, Grafana dashboards, and structured logging to give production full visibility.</div>
+                <div class="sk-tags"><span class="sk-tag">Prometheus</span><span class="sk-tag">Grafana</span><span class="sk-tag">Alertmanager</span></div>
             </div>
         </div>
-    </footer>
+    </div>
+
+    <!-- Proficiency bars -->
+    <div class="sec-tag" style="margin-top:1rem">// proficiency</div>
+    <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:1.25rem;">Tool Proficiency</h2>
+    <div class="bars">
+        <div class="bar-item">
+            <div class="bar-label"><span>Kubernetes</span><span>95%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+        </div>
+        <div class="bar-item">
+            <div class="bar-label"><span>Docker</span><span>97%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:97%"></div></div>
+        </div>
+        <div class="bar-item">
+            <div class="bar-label"><span>GitHub Actions</span><span>92%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:92%"></div></div>
+        </div>
+        <div class="bar-item">
+            <div class="bar-label"><span>Terraform</span><span>88%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:88%"></div></div>
+        </div>
+        <div class="bar-item">
+            <div class="bar-label"><span>AWS</span><span>90%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="bar-item">
+            <div class="bar-label"><span>Helm</span><span>93%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:93%"></div></div>
+        </div>
+        <div class="bar-item">
+            <div class="bar-label"><span>ArgoCD</span><span>89%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:89%"></div></div>
+        </div>
+        <div class="bar-item">
+            <div class="bar-label"><span>Python / Bash</span><span>85%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p class="footer-copy">© 2024 Lalit Kumar · DevOps Engineer</p>
+</footer>
 
 </body>
 </html>

@@ -6,16 +6,16 @@
 
 ## 🖥️ Application Preview
 
-The Go web server now serves a **premium DevOps portfolio** — a dark-themed, glassmorphism-inspired personal site showcasing skills, courses, and projects. All four routes remain unchanged in `main.go`.
+The Go web server serves a **clean DevOps portfolio** — a dark-themed, glassmorphism personal site. All four Go routes remain unchanged in `main.go`.
 
 | Route | Page |
 |---|---|
-| `/home` | Hero landing page with skills grid, tech cloud & featured project |
-| `/about` | Profile card, career timeline & core values |
-| `/courses` | Categorised free learning paths (all original YouTube links preserved) |
-| `/contact` | Social platform cards, availability status & FAQ |
+| `/home` | Hero landing with skills grid and tech pills |
+| `/about` | Profile card, career timeline, and core values |
+| `/courses` | Skills & expertise with categorised cards and proficiency bars |
+| `/contact` | Contact info, availability status, and reach-me details |
 
-> **Design highlights**: animated background grid, floating gradient orbs, glassmorphism nav, JetBrains Mono + Inter typography, hover micro-animations, and a fully responsive layout.
+> **Design**: animated CSS grid background, floating gradient orbs, glassmorphism nav, JetBrains Mono + Inter fonts, hover micro-animations, fully responsive.
 
 ---
 
